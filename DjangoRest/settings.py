@@ -26,7 +26,7 @@ SECRET_KEY = '&nw-a5$g1vm2pcysxu#t+4#0$3evhm3=-pr-@n_!j66u%uv26('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['preatice-djreact','127.0.0.1']
+ALLOWED_HOSTS = [ 'preatice-djreact.herokuapp.com' ,'127.0.0.1']
 
 
 # Application definition
