@@ -14,7 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+temp_dir = os.path.join(BASE_DIR,'build')
+static_dir = os.path.join(BASE_DIR,'build/static/')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -25,7 +26,7 @@ SECRET_KEY = '&nw-a5$g1vm2pcysxu#t+4#0$3evhm3=-pr-@n_!j66u%uv26('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['preatice-djreact','127.0.0.1']
 
 
 # Application definition
@@ -53,6 +54,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,7 +68,7 @@ ROOT_URLCONF = 'DjangoRest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [temp_dir],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,7 +131,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT  =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[static_dir,]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 CORS_ORIGIN_ALLOW_ALL= True
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
