@@ -9,7 +9,7 @@ const IngredientForm = React.memo(props => {
 
         switch (actionType) {
           case 'post':
-            return axios.post('http://127.0.0.1:8000/api/create/',{
+            return axios.post('http://127.0.0.1:8000/api/app/create/',{
               title: title,
               content :content
             })
@@ -21,7 +21,7 @@ const IngredientForm = React.memo(props => {
             })
 
           case 'put':
-             return axios.put(`http://127.0.0.1:8000/api/${id}/update`,{
+             return axios.put(`http://127.0.0.1:8000/api/${id}/update/`,{
               title: title,
               content :content
             })

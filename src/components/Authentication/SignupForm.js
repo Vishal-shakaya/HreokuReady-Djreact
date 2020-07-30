@@ -11,6 +11,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
  const onFinish = val => {
   console.log('Received values of form: ', val.username , val.email , val.password1 , val.password2);
   props.signup(val.username , val.email , val.password1 , val.password2);
+  props.history.replace('/')
 
    };
 

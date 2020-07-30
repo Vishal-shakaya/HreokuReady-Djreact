@@ -5,6 +5,8 @@ DestroyAPIView)
 
 from article.models import Article
 from .serializers import ArticleSerializer
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
 
 
 class ListView(ListAPIView):
@@ -28,4 +30,7 @@ class UpdateView(UpdateAPIView):
 
 class DestroyView(DestroyAPIView):
 	queryset = Article.objects.all()
-	serializer_class = ArticleSerializer 	
+	serializer_class = ArticleSerializer
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter	 	

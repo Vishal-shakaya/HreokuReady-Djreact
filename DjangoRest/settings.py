@@ -26,7 +26,7 @@ SECRET_KEY = '&nw-a5$g1vm2pcysxu#t+4#0$3evhm3=-pr-@n_!j66u%uv26('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'preatice-djreact.herokuapp.com' ,'127.0.0.1']
+ALLOWED_HOSTS = [ 'preatice-djreact.herokuapp.com' ,'127.0.0.1','localhost']
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'rest_auth.registration',
     'corsheaders',
     'rest_framework',
@@ -50,6 +52,12 @@ INSTALLED_APPS = [
   
     
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -135,7 +143,7 @@ STATIC_ROOT  =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[static_dir,]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+LOGIN_URL = '/'
 CORS_ORIGIN_ALLOW_ALL= True
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

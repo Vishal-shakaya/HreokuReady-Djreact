@@ -4,23 +4,27 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import { LoadingOutlined } from '@ant-design/icons';
 import * as action from '../../store/action/auth'
-
-
-
+import axios from 'axios';
+import ReactDOM from 'react-dom';
+import FacebookLogin from 'react-facebook-login';
 
 
 const LoginForm = React.memo(props=> {
 
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
   const onFinish = (values) => {
-    console.log('Success:', values.username , values.password);
     props.login(values.username , values.password)
-    props.history.push('/')
+    props.history.replace('/')
   };
  
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
+
+  const responseFacebook = (response) => {
+  console.log(response);
+}
 
    return (
   <div>
@@ -68,10 +72,18 @@ const LoginForm = React.memo(props=> {
         </Button>
         <Link to='/signup'>   singup </Link>
       </Form.Item>
-
     </Form>
+ 
   }
-  </div>
+  <FacebookLogin
+    appId="287819665804187"
+    autoLoad={true}
+    fields="name,email,picture"
+    callback={responseFacebook}
+    cssClass="my-facebook-button-class"
+    icon="fa-facebook"
+  />
+    </div>
   );
 
 })
